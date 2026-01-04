@@ -1,0 +1,80 @@
+# name: Deploy to Cloud Run
+
+# env:
+#   SERVICE_NAME: seoulworld-two-run
+#   REGIONS: asia-northeast3
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   dockerize-and-deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 1
+
+#       - name: Set up Google Cloud SDK
+#         uses: google-github-actions/setup-gcloud@v2
+#         with:
+#           service_account_key: ${{ secrets.GCP_SA_KEY_2509 }}
+#           project_id: ${{ vars.GCP_PROJECT_ID }}
+
+#       - name: Authenticate to Google Cloud
+#         run: |
+#           echo "Authenticating to Google Cloud..."
+#           echo '${{ secrets.GCP_SA_KEY_2509 }}' | gcloud auth activate-service-account --key-file=-
+#           gcloud config set project ${{ vars.GCP_PROJECT_ID }}
+#           gcloud config set compute/region asia-northeast3
+#           echo "Authentication completed"
+
+#       - name: Configure Docker for Artifact Registry
+#         run: |
+#           echo "Setting up GCP configuration..."
+#           gcloud auth configure-docker asia-northeast3-docker.pkg.dev --quiet
+#           echo "GCP configuration completed"
+          
+#       - name: Verify GCP Authentication
+#         run: |
+#           echo "Verifying GCP authentication..."
+#           gcloud auth list
+#           gcloud config list
+#           gcloud config get-value account
+#           gcloud config get-value project
+#           echo "GCP authentication verified"
+
+#       - name: Build and Push Docker Image
+#         run: |
+#           echo "Creating environment variables..."
+#           echo "REACT_APP_SUPABASE_API_URL=${{ secrets.REACT_APP_SUPABASE_API_URL }}" >> .env
+#           echo "REACT_APP_SUPABASE_ANON_KEY=${{secrets.REACT_APP_SUPABASE_ANON_KEY}}" >> .env
+#           echo "REACT_APP_SUPABASE_SLACK_FUNCTION_URL=${{secrets.REACT_APP_SUPABASE_SLACK_FUNCTION_URL}}" >> .env
+          
+#           echo "Building Docker image..."
+#           export DOCKER_BUILDKIT=1
+#           docker build \
+#             --cache-from asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
+#             --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
+#             --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
+#             .
+          
+#           echo "Pushing Docker images..."
+#           docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+#           docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+
+#       - name: Deploy to Cloud Run
+#         run: |
+#           echo "Deploying to Cloud Run..."
+#           gcloud run deploy $SERVICE_NAME \
+#             --image asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
+#             --platform managed \
+#             --region asia-northeast3 \
+#             --allow-unauthenticated \
+#             --max-instances 10 \
+#             --timeout 300 \
+#             --memory 512Mi \
+#             --cpu 1
