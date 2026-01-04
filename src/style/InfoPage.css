@@ -1,0 +1,113 @@
+/* 기본 컨테이너 스타일 */
+.check-in-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* 헤더 스타일 */
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 세션 정보 스타일 */
+.session-info {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.session-info h2 {
+  color: #1976d2;
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 폼 스타일 */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 입력 필드 및 라벨 스타일 */
+label {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+input[type="text"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+/* 라디오 버튼 스타일 */
+input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #007bff;
+}
+
+/* 버튼 스타일 */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .check-in-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"], button {
+    font-size: 0.9rem;
+  }
+}

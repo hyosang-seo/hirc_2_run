@@ -1,0 +1,57 @@
+.form-group {
+  margin-bottom: 16px;
+}
+
+.participant-row {
+  margin-bottom: 8px;
+}
+
+.participant-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.participant-header input[type="text"] {
+  flex: 9; /* 이름 입력 필드의 너비를 크게 설정 */
+  margin-right: 4px; /* X 버튼과의 간격 */
+}
+
+.remove-button {
+  flex: 1; /* X 버튼의 너비를 상대적으로 작게 설정 */
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px 4px; /* 패딩 조정 */
+  font-size: 12px; /* 텍스트 크기 조정 */
+}
+
+.remove-button:hover {
+  background-color: darkred;
+}
+
+.radio-group {
+  margin-left: 8px;
+}
+
+.radio-group label {
+  margin-right: 16px;
+}
+
+.add-participant-button,
+.submit-button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-participant-button:hover,
+.submit-button:hover {
+  background-color: #0056b3;
+}

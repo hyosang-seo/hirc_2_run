@@ -1,6 +1,21 @@
-# 서울뜀박질 (hirc Running) System
 
-서울뜀박질 러닝 그룹을 위한 출석 체크 및 세션 관리 시스템입니다.
+리소스
+BigQuery
+데이터 웨어하우스/분석
+SQL
+관리형 MySQL, PostgreSQL, SQL Server
+Compute Engine
+VM, GPU, TPU, 디스크
+스토리지
+멀티클래스 멀티 리전 객체 스토리지
+Cloud Run Functions
+이벤트 기반 서버리스 함수
+Cloud Run
+완전 관리형 애플리케이션 플랫폼
+
+# hirc (hirc Running) System
+
+hirc 러닝 그룹을 위한 출석 체크 및 세션 관리 시스템입니다.
 
 ## 🏃‍♂️ 프로젝트 개요
 
@@ -164,4 +179,4 @@ npm run build
 
 ---
 
-**서울뜀박질** - 함께 뛰는 즐거움을 나누는 러닝 커뮤니티 🏃‍♀️🏃‍♂️
+**hirc** - 함께 뛰는 즐거움을 나누는 러닝 커뮤니티 🏃‍♀️🏃‍♂️

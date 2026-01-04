@@ -1,0 +1,49 @@
+/* QRPage.css */
+
+/* QR 페이지 전체의 스타일 */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; /* 여백 추가 */
+  height: 100vh; /* 뷰포트 높이에 맞추기 */
+  overflow: hidden; /* 기본적으로 오버플로우 숨기기 */
+}
+
+.qr-code-section {
+  margin-bottom: 20px; /* QR 코드와 회원 목록 사이 여백 */
+}
+
+.member-list-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-height: 60vh; /* 최대 높이 설정, 필요에 따라 조절 */
+  overflow-y: auto; /* 세로 스크롤 가능 */
+}
+
+.member-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* 두 열 사이의 간격 */
+  width: 80%;
+}
+
+/* 버튼 스타일 */
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* 버튼들 사이의 간격 */
+  margin-top: 20px; /* 버튼과 목록 사이의 여백 */
+}
+
+.actions button {
+  padding: 8px 12px; /* 버튼 내 여백 조정 */
+  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  width: 120px; /* 버튼의 고정된 너비 설정 */
+  height: 40px; /* 버튼의 고정된 높이 설정 */
+  box-sizing: border-box; /* 패딩과 테두리를 포함하여 박스 크기 설정 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  flex-shrink: 0; /* 버튼이 작아지지 않도록 설정 */
+}

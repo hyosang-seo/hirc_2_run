@@ -1,0 +1,117 @@
+/* ManageSessionMember.css */
+
+.manage-session-member {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 28px 24px 20px 24px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  font-family: 'Segoe UI', 'Apple SD Gothic Neo', Arial, sans-serif;
+}
+
+.manage-session-member h3 {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 1.7rem;
+  color: #222;
+  letter-spacing: -1px;
+}
+
+.manage-session-member label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+.manage-session-member input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  border: 1.2px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 1.08rem;
+  background: #fafbfc;
+  transition: border 0.2s;
+}
+
+.manage-session-member input[type="text"]:focus {
+  border: 1.5px solid #007bff;
+  outline: none;
+  background: #fff;
+}
+
+.manage-session-member .radio-group {
+  display: flex;
+  gap: 24px;
+  margin: 8px 0 18px 0;
+  justify-content: flex-start;
+}
+
+.manage-session-member .radio-group label {
+  font-weight: 400;
+  color: #333;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.manage-session-member .radio-group input[type="radio"] {
+  accent-color: #007bff;
+  margin-right: 4px;
+}
+
+.manage-session-member .button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.manage-session-member button {
+  flex: 1 1 0;
+  padding: 11px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.manage-session-member button:hover {
+  background: #0056b3;
+}
+
+.manage-session-member .button-cancel {
+  background: #f44336;
+}
+.manage-session-member .button-cancel:hover {
+  background: #c62828;
+}
+
+.manage-session-member .button-back {
+  margin-top: 18px;
+  background: #6c757d;
+}
+.manage-session-member .button-back:hover {
+  background: #495057;
+}
+
+@media (max-width: 600px) {
+  .manage-session-member {
+    max-width: 98vw;
+    padding: 16px 4vw 12px 4vw;
+  }
+  .manage-session-member h3 {
+    font-size: 1.2rem;
+  }
+}

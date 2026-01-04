@@ -1,0 +1,822 @@
+/* ===== 전역 스타일 리셋 ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* 모바일에서 상단 여백 확보 */
+@media (max-width: 768px) {
+  body {
+    padding-top: env(safe-area-inset-top, 20px);
+  }
+}
+
+/* ===== CSS 변수 정의 ===== */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --secondary-color: #6c757d;
+  --secondary-hover: #5a6268;
+  --light-bg: #f8f9fa;
+  --border-color: #e9ecef;
+  --text-color: #333;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --border-radius-small: 6px;
+  --transition: all 0.3s ease;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== 기본 스타일 ===== */
+.member-admin-container {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-heavy);
+  font-family: var(--font-family);
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 40px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-admin-container h2 {
+  color: var(--text-color);
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  background: white;
+  padding: 20px 0;
+  border-bottom: 3px solid var(--primary-color);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ===== 폼 스타일 ===== */
+.member-admin-form {
+  display: grid;
+  margin-bottom: 30px;
+  background: var(--light-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-light);
+}
+
+/* ===== 입력 필드 공통 스타일 ===== */
+.member-admin-input,
+.member-search-input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  transition: var(--transition);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.member-admin-input:focus,
+.member-search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.member-search-input {
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+/* ===== 버튼 공통 스타일 ===== */
+.member-admin-add-btn,
+.pagination-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.member-admin-add-btn {
+  background: var(--primary-color);
+  color: white;
+  grid-column: 1 / -1;
+}
+
+.member-admin-add-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.member-admin-add-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== 테이블 컨테이너 ===== */
+.table-container {
+  max-height: calc(100vh - 500px);
+  min-height: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  background: white;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  flex: 1;
+}
+
+/* ===== 테이블 스타일 ===== */
+.member-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-family: inherit;
+}
+
+.member-admin-table thead {
+  position: sticky;
+  top: 0;
+  background: var(--light-bg);
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-admin-table th {
+  padding: 12px 6px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+  font-family: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: var(--light-bg);
+}
+
+.member-admin-table td {
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.member-admin-table tbody tr {
+  transition: var(--transition);
+}
+
+.member-admin-table tbody tr:hover {
+  background-color: var(--light-bg);
+  transform: scale(1.01);
+  box-shadow: var(--shadow-light);
+}
+
+.member-admin-table tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.member-admin-table tbody tr:nth-child(even):hover {
+  background-color: #f1f3f4;
+}
+
+/* ===== 테이블 내부 입력 필드 ===== */
+.member-admin-table input,
+.member-admin-table select {
+  width: 90%;
+  max-width: 120px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: var(--transition);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.member-admin-table input:focus,
+.member-admin-table select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+  width: 95%;
+  max-width: 130px;
+}
+
+/* ===== 버튼 기본 스타일 ===== */
+.member-admin-table button {
+  padding: 4px 8px;
+  margin: 1px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  font-weight: 500;
+  min-width: 40px;
+  display: inline-block;
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* ===== 수정/삭제 컬럼 스타일 ===== */
+.member-admin-table td:last-child {
+  display: flex;
+  gap: 2px;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100px;
+  max-width: 120px;
+}
+
+.member-admin-table td:last-child button {
+  flex: 1;
+  margin: 0;
+  min-width: 50px;
+  max-width: 60px;
+}
+
+/* ===== 버튼 색상 스타일 ===== */
+.member-admin-table .edit-btn {
+  background: var(--success-color) !important;
+  color: white !important;
+}
+
+.member-admin-table .edit-btn:hover {
+  background: var(--success-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+}
+
+.member-admin-table .delete-btn {
+  background: var(--danger-color) !important;
+  color: white !important;
+}
+
+.member-admin-table .delete-btn:hover {
+  background: var(--danger-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+.member-admin-table .save-btn {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.member-admin-table .save-btn:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+.member-admin-table .cancel-btn {
+  background: var(--secondary-color) !important;
+  color: white !important;
+}
+
+.member-admin-table .cancel-btn:hover {
+  background: var(--secondary-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(108, 117, 125, 0.3);
+}
+
+/* ===== 페이지네이션 ===== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px;
+  padding: 20px;
+  background: var(--light-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+}
+
+.pagination-btn {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 500;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.pagination-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-btn:disabled {
+  background: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-family: inherit;
+}
+
+/* ===== 스크롤바 스타일링 ===== */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ===== 반응형 디자인 ===== */
+
+/* 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+  .member-admin-container {
+    margin: 15px 10px;
+    padding: 20px 15px;
+    max-width: 100%;
+    border-radius: var(--border-radius-small);
+    height: calc(100vh - 30px);
+  }
+  
+  .member-admin-container h2 {
+    font-size: 1.5rem;
+    margin: 0 0 20px 0;
+    padding: 15px 0;
+    background: white;
+    border-bottom: 3px solid var(--primary-color);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .member-admin-form {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 15px;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+  }
+  
+  .member-admin-add-btn {
+    grid-column: span 3;
+  }
+  
+  .member-admin-input,
+  .member-search-input {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    transition: var(--transition);
+    box-sizing: border-box;
+  }
+  
+  .member-admin-input:focus,
+  .member-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .member-search-input {
+    width: 100%;
+  }
+  
+  .member-admin-add-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+  
+  .member-admin-add-btn:hover {
+    background: linear-gradient(135deg, var(--primary-hover), #004085);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+  }
+  
+  .table-container {
+    max-height: calc(100vh - 300px);
+    min-height: 250px;
+    border-radius: var(--border-radius-small);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  
+  .member-admin-table {
+    font-size: 11px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .member-admin-table th,
+  .member-admin-table td {
+    padding: 8px 4px;
+    min-width: 60px;
+    max-width: 100px;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .member-admin-table input,
+  .member-admin-table select {
+    padding: 4px 6px;
+    font-size: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .member-admin-table button {
+    padding: 4px 8px;
+    font-size: 10px;
+    margin: 2px;
+    min-width: 35px;
+    display: inline-block;
+  }
+  
+  .member-admin-table td:last-child {
+    display: flex;
+    gap: 1px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 70px;
+  }
+  
+  .member-admin-table td:last-child button {
+    flex: 1;
+    margin: 0;
+    min-width: 30px;
+    max-width: 35px;
+  }
+  
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .pagination-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+/* 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .member-admin-container {
+    margin: 10px 5px;
+    padding: 15px 10px;
+    border-radius: var(--border-radius-small);
+    height: calc(100vh - 20px);
+  }
+  
+  .member-admin-container h2 {
+    font-size: 1.2rem;
+    margin: 0 0 15px 0;
+    padding: 10px 0;
+    background: white;
+    border-bottom: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-light);
+  }
+  
+  .member-admin-form {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 10px;
+    background: var(--light-bg);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+  }
+  
+  .member-admin-add-btn {
+    grid-column: span 3;
+  }
+  
+  .member-admin-input,
+  .member-search-input {
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    background: white;
+    transition: var(--transition);
+    box-sizing: border-box;
+  }
+  
+  .member-admin-input:focus,
+  .member-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .member-search-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .member-admin-add-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--border-radius-small);
+    margin-top: 5px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  .member-admin-add-btn:hover {
+    background: linear-gradient(135deg, var(--primary-hover), #004085);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+  }
+  
+  .table-container {
+    max-height: calc(100vh - 250px);
+    min-height: 200px;
+    border-radius: var(--border-radius-small);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    border: 1px solid #ddd;
+  }
+  
+  .member-admin-table {
+    font-size: 10px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .member-admin-table th {
+    padding: 8px 4px;
+    min-width: 50px;
+    max-width: 80px;
+    font-size: 9px;
+    font-weight: 600;
+    background: var(--light-bg);
+    border-bottom: 2px solid #dee2e6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .member-admin-table td {
+    padding: 6px 4px;
+    min-width: 50px;
+    max-width: 80px;
+    font-size: 9px;
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .member-admin-table input,
+  .member-admin-table select {
+    padding: 4px 6px;
+    font-size: 9px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  .member-admin-table button {
+    padding: 4px 6px;
+    font-size: 8px;
+    margin: 1px;
+    min-width: 30px;
+    display: inline-block;
+    border-radius: 3px;
+  }
+  
+  .member-admin-table td:last-child {
+    display: flex;
+    gap: 1px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 60px;
+  }
+  
+  .member-admin-table td:last-child button {
+    flex: 1;
+    margin: 0;
+    min-width: 25px;
+    max-width: 30px;
+  }
+  
+  .pagination {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: var(--border-radius-small);
+  }
+  
+  .pagination-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: var(--border-radius-small);
+  }
+  
+  .pagination-info {
+    font-size: 12px;
+  }
+}
+
+/* 초소형 모바일 (360px 이하) */
+@media (max-width: 360px) {
+  .member-admin-container {
+    margin: 8px 2px;
+    padding: 10px 8px;
+    border-radius: 4px;
+    height: calc(100vh - 16px);
+  }
+  
+  .member-admin-container h2 {
+    font-size: 1.1rem;
+    margin: 0 0 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--primary-color);
+  }
+  
+  .member-admin-form {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 8px;
+    background: var(--light-bg);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+  }
+  
+  .member-admin-add-btn {
+    grid-column: span 3;
+  }
+  
+  .member-admin-input,
+  .member-search-input {
+    padding: 8px 6px;
+    font-size: 13px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    background: white;
+    transition: var(--transition);
+    box-sizing: border-box;
+  }
+  
+  .member-admin-input:focus,
+  .member-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  .member-search-input {
+    margin-bottom: 12px;
+  }
+  
+  .member-admin-add-btn {
+    padding: 8px 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--border-radius-small);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  .member-admin-add-btn:hover {
+    background: linear-gradient(135deg, var(--primary-hover), #004085);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  }
+  
+  .table-container {
+    max-height: calc(100vh - 200px);
+    min-height: 150px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .member-admin-table {
+    font-size: 9px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .member-admin-table th {
+    padding: 6px 3px;
+    min-width: 40px;
+    max-width: 60px;
+    font-size: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .member-admin-table td {
+    padding: 4px 3px;
+    min-width: 40px;
+    max-width: 60px;
+    font-size: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .member-admin-table input,
+  .member-admin-table select {
+    padding: 3px 4px;
+    font-size: 8px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+  
+  .member-admin-table button {
+    padding: 3px 4px;
+    font-size: 7px;
+    margin: 1px;
+    min-width: 25px;
+    border-radius: 2px;
+  }
+  
+  .member-admin-table td:last-child {
+    display: flex;
+    gap: 1px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 60px;
+  }
+  
+  .member-admin-table td:last-child button {
+    flex: 1;
+    margin: 0;
+    min-width: 25px;
+    max-width: 30px;
+  }
+  
+  .pagination {
+    gap: 6px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .pagination-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  
+  .pagination-info {
+    font-size: 11px;
+  }
+} 
