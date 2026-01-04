@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  hirc-two-run:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/workspace
+    env_file:
+      - .env  # 환경 변수 파일 경로

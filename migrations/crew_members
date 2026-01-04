@@ -1,0 +1,32 @@
+CREATE TABLE crew_members (
+    id SERIAL PRIMARY KEY,                -- 고유 식별자
+    name VARCHAR(50) NOT NULL,            -- 이름
+    gender VARCHAR(10),                   -- 성별
+    join_date DATE,                       -- 입회날짜
+    instagram VARCHAR(100),               -- 인스타 계정
+    hometown VARCHAR(50),                 -- 고향(-시)
+    address VARCHAR(100),               -- 거주지(00구 00동)
+    workplace VARCHAR(100),               -- 직장(-구)
+    job VARCHAR(100),                     -- 직업(직종)
+    phone_back_number int2,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now()  -- 생성일시(자동)
+);
+
+
+ALTER TABLE crew_members ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow anon insert" ON crew_members
+FOR INSERT
+WITH CHECK (true);
+-- July 9, 2025 4:28:13 PM
+CREATE POLICY "Allow anon select" ON crew_members
+    FOR SELECT
+    USING (true);
+-- UPDATE 정책 추가
+CREATE POLICY "Allow anon update" ON crew_members
+FOR UPDATE
+USING (true)
+WITH CHECK (true);
+-- DELETE 정책 추가
+CREATE POLICY "Allow anon delete" ON crew_members
+FOR DELETE
+USING (true);
