@@ -80,7 +80,7 @@ const MakeSession = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Simple authentication check
-    if (userId === 'seoulrunner' && password === 'seoulrunner') {
+    if (userId === 'hirc' && password === 'hirc') {
       setIsAuthenticated(true);
     } else {
       alert('인증에 실패했습니다. ID와 비밀번호를 확인하세요.');
