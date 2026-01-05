@@ -53,7 +53,7 @@ const Main = () => {
 
   return (
     <div>
-      <h1>hirc 뜀박질 출석 체크</h1>
+      <h1>hirc 출석 체크</h1>
       <button className="sessionMaker" onClick={handleDashboard}>🏆 대시보드</button>
       <button className="sessionMaker" onClick={handleCrewAttendance}>크루 출석현황</button>
       <button className="sessionMaker" onClick={handleMemberAdmin}>회원관리</button>
