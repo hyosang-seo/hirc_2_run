@@ -50,20 +50,20 @@ jobs:
           echo "Building Docker image..."
           export DOCKER_BUILDKIT=1
           docker build \
-            --cache-from asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
-            --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
-            --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
+            --cache-from asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
+            --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest \
+            --tag asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
             .
           
           echo "Pushing Docker images..."
-          docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest
-          docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+          docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+          docker push asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
           echo "Deploying to Cloud Run..."
           gcloud run deploy $SERVICE_NAME \
-            --image asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/seoulworld-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
+            --image asia-northeast3-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/hirc-repo/${{ secrets.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
             --platform managed \
             --region asia-northeast3 \
             --allow-unauthenticated \
