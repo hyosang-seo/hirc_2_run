@@ -1,7 +1,7 @@
 name: Deploy to Cloud Run
 
 env:
-  SERVICE_NAME: seoulworld-two-run
+  SERVICE_NAME: hirc-two-run
   REGIONS: asia-northeast3
 
 on:
