@@ -27,7 +27,6 @@ jobs:
       - name: Authenticate to Google Cloud
         run: |
           echo "Authenticating to Google Cloud..."
-          echo '${{ secrets.GCP_SA_KEY_2509 }}' | gcloud auth activate-service-account --key-file=-
           gcloud config set project ${{ vars.GCP_PROJECT_ID }}
           gcloud config set compute/region asia-northeast3
           echo "Authentication completed"
