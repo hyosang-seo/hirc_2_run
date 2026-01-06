@@ -29,6 +29,7 @@ const Done = () => {
 
         // 1단계: 나와 관련된 workout_members에서 session_id 뽑기
         const { data: myMemberships, error: memberError } = await supabase
+          .schema('hirc')
           .from('workout_members')
           .select('session_id')
           .eq('name', name)
@@ -41,6 +42,7 @@ const Done = () => {
 
         // 2단계: session_id로 sessions 조회
         const { data: mySessions, error: sessionError } = await supabase
+          .schema('hirc')
           .from('sessions')
           .select(`
             name,

@@ -10,7 +10,7 @@ const Main = () => {
   useEffect(() => {
     // Supabase에서 세션 테이블의 name 데이터를 가져옵니다.
     const fetchNames = async () => {
-      const { data, error } = await supabase.from('sessions').select('name, uuid, id').is('closing_at', null);
+      const { data, error } = await supabase.schema('hirc').from('sessions').select('name, uuid, id').is('closing_at', null);
       if (error) {
         console.error('Error fetching names:', error);
       } else {

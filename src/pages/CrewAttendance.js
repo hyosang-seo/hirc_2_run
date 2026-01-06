@@ -47,6 +47,7 @@ const CrewAttendance = () => {
     setLoading(true);
     // crew_members 전체 조회
     const { data: members, error: memberError } = await supabase
+      .schema('hirc')
       .from('crew_members')
       .select('name, phone_back_number');
     if (memberError) {
@@ -65,6 +66,7 @@ const CrewAttendance = () => {
     }
     // sessions.opening_at 기준으로 필터링하기 위해 조인
     let query = supabase
+      .schema('hirc')
       .from('workout_members')
       .select('secret_number, sessions!inner(openning_at)', { head: false })
       .eq('member_type', memberType)

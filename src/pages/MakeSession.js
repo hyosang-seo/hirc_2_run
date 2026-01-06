@@ -43,6 +43,7 @@ const MakeSession = () => {
     try {
       // 1, 2번: sessions 테이블에 러닝명과 일시 저장
       const { data: sessionData, error: sessionError } = await supabase
+        .schema('hirc')  
         .from('sessions')
         .insert([{ name: sessionName, openning_at: openningAt, is_standard: 1, is_confirmed: 1}])
         .select()
@@ -60,6 +61,7 @@ const MakeSession = () => {
       }));
 
       const { error: membersError } = await supabase
+        .schema('hirc')  
         .from('workout_members')
         .insert(participantsData);
 

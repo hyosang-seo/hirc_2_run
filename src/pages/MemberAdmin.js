@@ -45,7 +45,7 @@ const MemberAdmin = () => {
 
   const fetchMembers = useCallback(async () => {
     console.log('fetchMembers 호출됨');
-    let query = supabase.from('crew_members').select('*').order('id', { ascending: true });
+    let query = supabase.schema('hirc').from('crew_members').select('*').order('id', { ascending: true });
     if (search) {
       query = query.ilike('name', `%${search}%`);
     }
@@ -71,6 +71,7 @@ const MemberAdmin = () => {
     }
 
     const { data, error } = await supabase
+      .schema('hirc')  
       .from('workout_members')
       .select('secret_number')
       .eq('member_type', 'Crew')
@@ -103,6 +104,7 @@ const MemberAdmin = () => {
       
       // 중복 확인
       const { data: existingMembers } = await supabase
+        .schema('hirc')  
         .from('crew_members')
         .select('id, name, phone_back_number')
         .eq('phone_back_number', phoneNum);
@@ -132,6 +134,7 @@ const MemberAdmin = () => {
       console.log('삽입할 데이터:', insertData);
       
       const { error } = await supabase
+        .schema('hirc')  
         .from('crew_members')
         .insert([insertData]);
       
@@ -185,12 +188,13 @@ const MemberAdmin = () => {
     
     // 삭제 전 회원 정보 조회
     const { data: memberToDelete } = await supabase
+      .schema('hirc')  
       .from('crew_members')
       .select('*')
       .eq('id', id)
       .single();
     
-    const { error } = await supabase.from('crew_members').delete().eq('id', id);
+    const { error } = await supabase.schema('hirc').from('crew_members').delete().eq('id', id);
     if (!error) {
       fetchMembers();
       
@@ -254,12 +258,13 @@ const MemberAdmin = () => {
       console.log('수정할 회원 ID:', memberId);
       console.log('editMember 원본:', editMember);
       
-      const { error } = await supabase.from('crew_members').update(updateData).eq('id', memberId);
+      const { error } = await supabase.schema('hirc').from('crew_members').update(updateData).eq('id', memberId);
       
       console.log('업데이트 오류:', error);
       
       // 업데이트 후 해당 회원 데이터 직접 조회
       const { data: updatedMember, error: fetchError } = await supabase
+        .schema('hirc')  
         .from('crew_members')
         .select('*')
         .eq('id', memberId)

@@ -9,6 +9,7 @@ const RunningConfirm = ({ status }) => {
   useEffect(() => {
     const fetchSession = async () => {
       const { data, error } = await supabase
+        .schema('hirc')
         .from('sessions')
         .select(`name, uuid`)
         .eq('is_standard', 0)
@@ -28,6 +29,7 @@ const RunningConfirm = ({ status }) => {
   // 버튼 클릭 시 해당 세션의 is_confirmed를 1로 업데이트하는 함수
   const handleConfirm = async (uuid) => {
     const { error } = await supabase
+      .schema('hirc')
       .from('sessions')
       .update({ is_confirmed: 1 }) // is_confirmed 값을 1로 업데이트
       .eq('uuid', uuid);

@@ -24,6 +24,7 @@ const QRPage = () => {
     try {
       // sessions 테이블에서 해당 세션을 종료 처리
       const { error: sessionError } = await supabase
+        .schema('hirc')  
         .from("sessions")
         .update({ 
           closing_at: new Date().toISOString(),
@@ -37,6 +38,7 @@ const QRPage = () => {
 
       // workmembers 테이블에서 해당 세션의 ready 상태인 멤버들을 noshow로 업데이트
       const { data: memberData, error: memberError } = await supabase
+        .schema('hirc')
         .from("workout_members")
         .update({ status: "noshow" })
         .eq("session_id", sessionId)

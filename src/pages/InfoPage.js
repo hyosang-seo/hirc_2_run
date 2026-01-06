@@ -25,6 +25,7 @@ const InfoPage = () => {
       
       try {
         const { data, error } = await supabase
+          .schema('hirc')
           .from('sessions')
           .select('name')
           .eq('id', sessionId)
@@ -80,6 +81,7 @@ const InfoPage = () => {
       console.log(memberType)
       console.log(sessionId)
       const { data: selectData, error: selectError } = await supabase
+        .schema('hirc')  
         .from('workout_members')
         .select('id')  // Assuming `id` is the unique identifier
         .match({ name: name, member_type: memberType, session_id: sessionId, status: 'ready' })
@@ -115,6 +117,7 @@ const InfoPage = () => {
   
 
     const { data, error } = await supabase
+    .schema('hirc')
     .from('workout_members')
     .update({ status: 'done', secret_number: numericSecretNumber })
     .match({ name: name, member_type: memberType, session_id: sessionId })

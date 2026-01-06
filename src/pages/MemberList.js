@@ -7,6 +7,7 @@ const MemberList = ({ status, sessionUuid }) => {
   useEffect(() => {
     const fetchMembers = async () => {
       const { data, error } = await supabase
+        .schema('hirc')  
         .from('workout_members')
         .select(`name, member_type,
           sessions (

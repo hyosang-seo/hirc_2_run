@@ -27,6 +27,7 @@ const Dashboard = () => {
     try {
       // 크루 멤버 조회
       const { data: crewMembers, error: memberError } = await supabase
+        .schema('hirc')
         .from('crew_members')
         .select('id, name, phone_back_number, join_date');
 
@@ -38,6 +39,7 @@ const Dashboard = () => {
           if (!member.phone_back_number) return null;
 
           const { data: attendanceData, error: attendanceError } = await supabase
+            .schema('hirc')
             .from('workout_members')
             .select(`
               secret_number,

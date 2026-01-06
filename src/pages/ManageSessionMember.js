@@ -17,6 +17,7 @@ const ManageSessionMember = () => {
   const handleCancelMember = async () => {
       // Step 1: Select the first matching record where status is 'ready'
       const { data: selectData, error: selectError } = await supabase
+      .schema('hirc')
       .from('workout_members')
       .select('id')  // Assuming `id` is the unique identifier
       .match({ name: name, member_type: type, session_id: sessionId, status: 'ready' })
@@ -37,6 +38,7 @@ const ManageSessionMember = () => {
 
     try {
       const { error } = await supabase
+        .schema('hirc')
         .from("workout_members")
         .update({ status: 'cancel'})
         .eq('id', memberId)
@@ -57,7 +59,7 @@ const ManageSessionMember = () => {
 
   const handleAddMember = async () => {
     try {
-      const { error } = await supabase.from("workout_members").insert([
+      const { error } = await supabase.schema('hirc').from("workout_members").insert([
         {
           name,
           member_type: type,
@@ -80,6 +82,7 @@ const ManageSessionMember = () => {
   const handleRemoveMember = async () => {
     try {
       const { error } = await supabase
+        .schema('hirc')  
         .from("workout_members")
         .delete()
         .eq("session_id", sessionId)
