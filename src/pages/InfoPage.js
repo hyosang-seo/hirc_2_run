@@ -214,7 +214,7 @@ const InfoPage = () => {
               checked={memberType === 'Crew'}
               onChange={handleInputChange}
             />
-            서뜀러너
+            HIRC
           </label>
           <label>
             <input
